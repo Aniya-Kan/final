@@ -1,11 +1,9 @@
 import React from "react";
 
-export default function App(){
+export default function(){
     return(
         <React.Fragment>
-            <div>
-                hello
-            </div>
+            
         </React.Fragment>
     )
 }
