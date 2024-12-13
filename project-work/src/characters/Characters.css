@@ -3,28 +3,31 @@ body{
     background-size: cover;
 }
 .images{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    color: aliceblue;
+  margin: 0 10% 0 10%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	justify-content: center;
+	padding: 20px;
+  color: aliceblue;
     
   }
 .imgs{
     width: 100%;
-    
+    height: 70%;
     display: flex;
     justify-content: center;
 }
 .imgs img{
     width: 90%;
-    width: 90%;
+
     border-radius: 10px;
     transition: width 0.7s;
  
 }
 .items{
     height: 400px;
-    background-color: #3C3E44 ;
+    background-color: rgba(28, 35, 47, 0.7) ;
     border-radius:10px;
     
 
@@ -55,7 +58,14 @@ body{
     height: 100px;
     align-items: center;
     justify-content: space-evenly;
-  
+    
+  }
+  .butns button{
+    color: aliceblue;
+    font-size: 25px;
+    background-color: rgba(28, 35, 47, 0.7);
+    border: #3182ce 2px solid;
+
   }
   .search{
     display: flex;
@@ -67,11 +77,12 @@ body{
   input{
     width: 50%;
     height: 60px;
-    border-radius: 18px;
+    border-radius: 5px;
     background-color: #272B33;
     border: none;
     font-size: 30px;
     color: aliceblue;
+    border: 1px solid #3182ce;
   
   }
   p{
@@ -79,6 +90,6 @@ body{
     font-size: 25px;
   }
 .imgs img:hover{
-  width: 300px;
+  width: 340px;
   
 }
