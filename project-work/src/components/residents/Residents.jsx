@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import './Residents.css'
 
 export default function Residents() {
 	const { locationId } = useParams()
+	const [location, setLocation] = useState([])
 	const [residents, setResidents] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -14,6 +16,7 @@ export default function Residents() {
 				const response = await axios.get(
 					`https://rickandmortyapi.com/api/location/${locationId}`
 				)
+				setLocation(response.data)
 				const residentsData = await Promise.all(
 					response.data.residents.map(url =>
 						axios.get(url).then(res => res.data)
@@ -33,28 +36,48 @@ export default function Residents() {
 	if (isLoading) return <div>Loading...</div>
 
 	return (
-		<div className='container mx-auto px-4 py-6'>
-			<h1 className='text-2xl font-bold text-center mb-4'>{location.name}</h1>
-			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-				{residents.map(resident => (
-					<div
-						key={resident.id}
-						className='bg-gray-200 rounded-lg p-4 shadow-md text-center'
-					>
-						<h2 className='text-lg font-semibold text-gray-800 mb-2'>
-							{resident.name}
-						</h2>
-						<p className='text-sm text-gray-600 truncate'>
-							<span className='font-bold'>Species:</span> {resident.species}
-						</p>
-						<p className='text-sm text-gray-600 truncate'>
-							<span className='font-bold'>Status:</span> {resident.status}
-						</p>
-						<p className='text-sm text-gray-600 truncate'>
-							<span className='font-bold'>Gender:</span> {resident.gender}
-						</p>
-					</div>
-				))}
+		<div className='residents-Bg'>
+			<div className='container'>
+				<h1 className='location-title'>{location.name}</h1>
+				<div className='residents-grid'>
+					{residents.length > 0 ? (
+						residents.map(resident => (
+							<div key={resident.id} className='resident-card'>
+								<div className='resident-image-container'>
+									<img
+										src={resident.image}
+										alt={resident.name}
+										className='resident-image'
+									/>
+								</div>
+								<h2 className='resident-name'>{resident.name}</h2>
+								<div className='status-container'>
+									<span
+										className={`status-indicator ${
+											resident.status === 'Alive'
+												? 'status-alive'
+												: resident.status === 'Dead'
+												? 'status-dead'
+												: 'status-unknown'
+										}`}
+									></span>
+									<span className='resident-status'>
+										{resident.status} - {resident.species}
+									</span>
+								</div>
+								<p className='resident-detail'>
+									<span className='font-bold'>Gender:</span> {resident.gender}
+								</p>
+								<p className='resident-detail'>
+									<span className='font-bold'>Origin:</span>{' '}
+									{resident.origin?.name || 'Unknown'}
+								</p>
+							</div>
+						))
+					) : (
+						<p className='residents-no'>This location doesn't have residents</p>
+					)}
+				</div>
 			</div>
 		</div>
 	)
