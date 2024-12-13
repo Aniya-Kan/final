@@ -3,9 +3,9 @@ const Loader = () => {
 	return (
 		<div>
 			<div className='container'>
-				<div className='loader element'></div>
-				<div className='loader element'></div>
-				<div className='loader element'></div>
+				<div className='loader elements'></div>
+				<div className='loader elements'></div>
+				<div className='loader elements'></div>
 			</div>
 		</div>
 	)
