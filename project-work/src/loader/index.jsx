@@ -1,6 +1,6 @@
 import React from 'react'
 const Loader = () => {
-	return <div></div> //loader
+	return <div></div>
 }
 
 export default Loader
