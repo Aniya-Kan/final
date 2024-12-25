@@ -70,7 +70,7 @@ export default function Residents() {
 								</p>
 								<p className='resident-detail'>
 									<span className='font-bold'>Origin:</span>{' '}
-									{resident.origin?.name || 'Unknown'}
+									{resident.origin.name || 'Unknown'}
 								</p>
 							</div>
 						))
