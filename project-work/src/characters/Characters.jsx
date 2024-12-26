@@ -62,9 +62,15 @@ export default function Characters() {
             <div className="items"
             key={character.id}>
               <p className="name">{character.name}</p>
-              <p>{character.status}</p>
+              <p className="status" 
+              style={{ color: character.status === "Alive" 
+              ? "green" : character.status === "Dead"
+              ? "red" : "gray" }}>
+                {character.status}
+              </p>
               <p>{character.gender}</p>
-              <div className="imgs"><img src={character.image} alt={character.name} /></div>
+              <p>{character.species}</p>
+              <div className="imgs"><img src={character.image} alt={character.name}/></div>
               
             </div>
           ))
